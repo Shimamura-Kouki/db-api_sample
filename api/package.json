@@ -1,0 +1,17 @@
+{
+  "name": "sqlcourse-api",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "migrate": "node node_modules/knex/bin/cli.js migrate:latest"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "knex": "^3.1.0",
+    "mysql2": "^3.11.0"
+  }
+}
