@@ -3,6 +3,7 @@ import express from 'express';
 import knexConfig from '../knexfile.js';
 import knexModule from 'knex';
 import todosRouter from './todos.js';
+import usersRawRouter from './users.js';
 
 const app = express();
 const knex = knexModule(knexConfig.development);
