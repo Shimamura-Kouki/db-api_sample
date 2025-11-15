@@ -60,17 +60,15 @@ export default function usersRawRouter(knex) {
     if (domains) {
       const list = String(domains).split(',').map(s => s.trim()).filter(Boolean);
       if (list.length) {
-        conds.push(`SUBSTRING_INDEX(email, '@', -1) IN (${list.map(_=>'?').join(',')})`);
+        conds.push(`SUBSTRING_INDEX(email, '@', -1) IN (${list.map(_ => '?').join(',')})`);
         params.push(...list);
       }
     }
 
     // where には WHERE句が入る
     const where = conds.length ? `WHERE ${conds.join(' AND ')}` : '';
-    const [rows] = await knex.raw(
-      // 【後期Day5課題】ここのSQLを考えて書く
-
-    );
+    const sql = `SELECT id, name, email, created_at FROM users ${where} ORDER BY id ASC`;
+    const [rows] = await knex.raw(sql, params);
     res.json(rows);
   });
 
