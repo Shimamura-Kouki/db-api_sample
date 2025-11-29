@@ -1,2 +1,2 @@
-GET http://localhost:3000/userAggregate?type=total HTTP/1.1
+GET http://localhost:3000/userAggregate?type=by_day HTTP/1.1
 content-type: application/json
