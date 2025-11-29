@@ -68,8 +68,7 @@ export default function usersRawRouter(knex) {
     // where には WHERE句が入る
     const where = conds.length ? `WHERE ${conds.join(' AND ')}` : '';
     const [rows] = await knex.raw(
-      // 【後期Day5課題】ここのSQLを考えて書く
-
+      `SELECT id, name, email, created_at FROM users ${where} ORDER BY created_at DESC`, params
     );
     res.json(rows);
   });

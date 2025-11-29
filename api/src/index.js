@@ -4,6 +4,7 @@ import knexConfig from '../knexfile.js';
 import knexModule from 'knex';
 import todosRouter from './todos.js';
 import usersRawRouter from './users.js';
+import userAggregateRouter from './userAggregate.js';
 
 const app = express();
 const knex = knexModule(knexConfig.development);
@@ -21,6 +22,7 @@ app.get('/health', async (_req, res) => {
 
 app.use('/todos', todosRouter(knex));
 app.use('/users', usersRawRouter(knex));
+app.use('/userAggregate', userAggregateRouter(knex));
 
 const port = Number(process.env.PORT || 3000);
 app.listen(port, () => console.log(`API listening on http://localhost:${port}`));
