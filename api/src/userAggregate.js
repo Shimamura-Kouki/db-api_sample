@@ -46,11 +46,11 @@ export default function userAggregateRouter(knex) {
         sql = `
           SELECT
             SUBSTRING_INDEX(email, '@', -1) AS domain,
-            COUNT(*) AS user_count
+            COUNT(*) AS users_count
           FROM users
           ${where}
           GROUP BY domain
-          ORDER BY user_count DESC, domain ASC
+          ORDER BY users_count DESC
         `;
         break;
 
@@ -59,11 +59,11 @@ export default function userAggregateRouter(knex) {
         sql = `
           SELECT
             DATE(created_at) AS day,
-            COUNT(*) AS user_count
+            COUNT(*) AS registrations
           FROM users
           ${where}
-          GROUP BY day
-          ORDER BY day ASC
+          GROUP BY DATE(created_at)
+          ORDER BY day
         `;
         break;
 
@@ -72,11 +72,11 @@ export default function userAggregateRouter(knex) {
         sql = `
           SELECT
             DATE_FORMAT(created_at, '%Y-%m') AS month,
-            COUNT(*) AS user_count
+            COUNT(*) AS registrations
           FROM users
           ${where}
           GROUP BY month
-          ORDER BY month ASC
+          ORDER BY month
         `;
         break;
 
